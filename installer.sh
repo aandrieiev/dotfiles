@@ -1,19 +1,26 @@
 #!/usr/bin/env sh
 
+files_dir=./files
+
+function absolute_path () {
+  echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
+}
+
 function install {
-  for f in ./*; do
+  for f in $files_dir/*; do
     basename=$(basename $f)
 
-    # Skip sourcing isntaller itself
-    if [ "$basename" == "$(basename $0)" ] ; then continue; fi
+    # Skip sourcing odd files
+    if test $basename == ".ln" ; then continue ; fi
     target=$(echo $basename | sed 's_\(.*\)\.ln_\.\1_')
 
     if [ -s ~/$target ]; then
-      echo "Found $target, going to remove..."
+      echo "Found ~/$target, going to remove it..."
       rm ~/$target
     fi
 
-    ln -s $f ~/$target
+    echo $(absolute_path $f)
+    ln -s $(absolute_path $f) ~/$target
   done
 }
 
