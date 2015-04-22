@@ -1,0 +1,78 @@
+# Ctrl-b + r to reload this config
+bind r source-file ~/.tmux.conf
+
+# Enable vi shortcuts
+set-window-option -g mode-keys vi
+
+# Pane navigation
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+# Pane resizing
+bind-key + resize-pane -U 50
+bind-key - resize-pane -D 10
+bind-key > resize-pane -R 20
+bind-key < resize-pane -L 20
+
+
+# Copy-pasting
+unbind-key [
+bind-key Escape copy-mode
+unbind-key p
+bind-key p paste-buffer
+
+# Set default TERM
+set-option -g default-terminal "screen-256color"
+
+# Status bar customization
+set -g status-utf8 on
+set -g status-interval 5
+set -g status-left-length 90
+set -g status-right-length 60
+set -g status-right '%a %d %b %R'
+
+#### COLOUR (Solarized light)
+
+# default statusbar colors
+set-option -g status-bg colour240
+set-option -g status-fg colour7
+set-option -g status-attr default
+
+# default window title colors
+set-window-option -g window-status-fg colour180 #base00
+set-window-option -g window-status-bg default
+#set-window-option -g window-status-attr dim
+
+# pane border
+set-option -g pane-border-fg colour240
+set-option -g pane-active-border-fg colour7 #base1
+
+# message text
+set-option -g message-bg colour231 #base2
+set-option -g message-fg colour196 #orange
+
+# pane number display
+set-option -g display-panes-active-colour colour20 #blue
+set-option -g display-panes-colour colour196 #orange
+
+# List of plugins
+## Supports `github_username/repo` or full git repo URLs
+set -g @tpm_plugins '              \
+  tmux-plugins/tpm                 \
+  tmux-plugins/tmux-sensible       \
+  tmux-plugins/tpm                 \
+  tmux-plugins/tmux-resurrect      \
+  tmux-plugins/tmux-continuum      \
+'
+# Preserving sessions
+set -g @continuum-restore 'on'
+
+# Initializes TMUX plugin manager.
+# Keep this line at the very bottom of tmux.conf.
+run-shell '~/.tmux/plugins/tpm/tpm'

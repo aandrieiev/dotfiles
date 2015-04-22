@@ -1,0 +1,29 @@
+[include]
+  path = ~/.gitconfig_local
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[credential]
+  helper = osxkeychain
+[alias]
+  a  = add
+  p  = push
+  s  = status
+  co = checkout
+  ci = commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[push]
+  default = simple
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+  prompt = false
+  keepBackup = false
+[grep]
+  extendRegexp = true
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
+  trustExitCode = true

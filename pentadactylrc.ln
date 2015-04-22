@@ -1,0 +1,86 @@
+" Appearance
+se go+=n
+colorscheme solarized-light
+
+" Navigation
+noremap j 5j
+noremap k 5k
+noremap } 40j
+noremap { 40k
+noremap <leader>f :tabopen<Space>
+
+noremap J gt
+noremap K gT
+
+" Custom font
+hi FontFixed -append font-size: 10pt !important; font-family: "Luculent 14" !important;
+hi Hint -a font-size: 11pt !important; font-font: "Luculent 14" !important; color: #4a400e !important; outline: 0px !important; background-color: rgb(254, 218, 49) !important; top: -1px; left: -1px; padding: 1px 3px 0px 3px !important; border-radius: 2px !important; box-shadow: rgb(179, 153, 34) 0px -2px 0px inset !important;
+
+" Hints
+se hintkeys=gyuiopqwhjklasdfertnmzxcvb
+hi Hint -a text-transform: uppercase;
+
+"" some groups -- such as `CmdLine` and `StatusLine` -- are linked by default
+hi -append -link FontFixed CompItem
+hi -append -link FontFixed CompTitle
+
+" Search
+se findcase=smart
+
+" Cyrillic symbols
+map пе gt
+map пЕ gT
+map пп gg
+
+map Ф A
+map И B
+map С C
+map В D
+map У E
+map А F
+map П G
+map Р H
+map Ш I
+map О J
+map Л K
+map Д L
+map Ь M
+map Т N
+map Щ O
+map З P
+map Й Q
+map К R
+map Ы S
+map Е T
+map Г U
+map М V
+map Ц W
+map Ч X
+map Н Y
+map Я Z
+map ф a
+map и b
+map с c
+map в d
+map у e
+map а f
+map п g
+map р h
+map ш i
+map о j
+map л k
+map д l
+map ь m
+map т n
+map щ o
+map з p
+map й q
+map к r
+map ы s
+map е t
+map г u
+map м v
+map ц w
+map ч x
+map н y
+map я z
