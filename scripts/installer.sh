@@ -16,7 +16,7 @@ function install {
 
     if [ -s ~/$target ]; then
       echo "Found ~/$target, going to remove it..."
-      rm ~/$target
+      rm -r ~/$target
     fi
 
     echo $(absolute_path $f)
@@ -25,7 +25,7 @@ function install {
 }
 
 while true; do
-  read -p "Do you wish to install this program? (Y/N): " yn
+  read -p "Existing dotfile will be replaced from those in files/. Proceed (Y/N): " yn
     case $yn in
       [Yy]* ) install;  break;;
       [Nn]* ) echo "Aborting..."; exit;;
