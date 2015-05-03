@@ -47,12 +47,12 @@ set t_Co=256                    " required by tmux
 " Airline
 set laststatus=2                                      " to show the airline
 set noshowmode                                        " hide vim mode indidicator
-let g:airline_powerline_fonts=1                       " to use fancy characters
+let g:airline_extensions=['branch', 'tabline']
+let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1            " show buffers
 let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
 let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
 
-let g:airline_extensions = ['branch', 'tabline']
 
 "" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
 let g:airline_mode_map = {
