@@ -90,8 +90,8 @@ function set_prompt_command {
   # $ - stashed changes
   # % - untracked changes
 
-  # remove parentheses from the git prompt and replace characters for status
-  local __GIT_PS1_WITHOUT_PARENTHESES=$(echo $(__git_ps1) | sed 's/</↓/; s/>/↑/; s/\$/†/; s/\%/?/; s/=//; s/[()]//g')
+  # remove parentheses from the git prompt
+  local __GIT_PS1_WITHOUT_PARENTHESES=$(echo $(__git_ps1) | tr -d '()=')
 
   if [ -z "$__GIT_PS1_WITHOUT_PARENTHESES" ]; then
     local __GIT_PS1=$(__git_ps1)
