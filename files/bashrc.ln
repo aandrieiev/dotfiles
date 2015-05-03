@@ -72,7 +72,6 @@ fi
 
 # set prompt command (title update and color prompt & git branch status)
 function set_prompt_command {
-  export GIT_PS1_SHOWDIRTYSTATE=1
   local PWDNAME=$PWD
 
   if [[ "${HOME}" == "${PWD}" ]]; then
@@ -81,12 +80,23 @@ function set_prompt_command {
     PWDNAME="~${PWD:${#HOME}}"
   fi
 
-  local __GIT_PS1_WITHOUT_PARENTHESES=$(echo $(__git_ps1) | tr -d '()')
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto"
+  # < - behind of upstream
+  # > - ahead of upstream
+  # = - no diff w/ upstream
+  # $ - stashed changes
+  # % - untracked changes
+
+  # remove parentheses from the git prompt and replace characters for status
+  local __GIT_PS1_WITHOUT_PARENTHESES=$(echo $(__git_ps1) | sed 's/</↓/; s/>/↑/; s/\$/†/; s/\%/?/; s/=//; s/[()]//g')
 
   if [ -z "$__GIT_PS1_WITHOUT_PARENTHESES" ]; then
     local __GIT_PS1=$(__git_ps1)
   else
-    local __GIT_PS1=$(printf " $__GIT_PS1_WITHOUT_PARENTHESES")
+    local __GIT_PS1=" $__GIT_PS1_WITHOUT_PARENTHESES"
   fi
 
   if [ -n "$SSH_CLIENT" ]; then
