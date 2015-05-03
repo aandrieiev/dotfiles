@@ -1,8 +1,8 @@
-"" NeoBundle
+" NeoBundle
 set rtp+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-"" Interface
+" Interface
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
@@ -33,11 +33,11 @@ call     neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 
-"" Appearence
+" Appearence
 syntax enable
 se cursorline
 
-" Solarized color scheme
+"" Solarized color scheme
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1     " required
@@ -51,6 +51,9 @@ let g:airline_powerline_fonts=1                       " to use fancy characters
 let g:airline#extensions#tabline#enabled=1            " show buffers
 let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
 let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
+
+let g:airline_extensions = ['branch', 'tabline']
+
 "" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
 let g:airline_mode_map = {
       \ '__' : '-',
@@ -69,25 +72,22 @@ let g:airline_mode_map = {
 "" Hide encoding and format values from the statusline
 let g:airline_section_y=''
 
-"" Version Control
-" Fugitive
+" Version Control
+"" Fugitive
 nnoremap <space>gs :Gstatus<CR>
 
-" Git-gutter
+"" Git-gutter
 let g:gitgutter_sign_column_always=1
 
 
-"" Editing
+" Editing
 augroup OnBiffeWrite
   autocmd bufwritepre * :%s/\s\+$//e     " autoremove trailing whitespaces
   autocmd bufwritepre * :retab           " convert tabs<->spaces
 augroup END
 
 set wildignorecase
-
-" set wrap textwidth=80                   " autowrap after the 80th col
 set nowrap
-
 set number                               " show line numbers
 set colorcolumn=81                       " draw a vertical line
 set expandtab tabstop=2                  " expand tabs to 2 spaces
@@ -97,7 +97,6 @@ syntax   on
 filetype plugin on                       " load ft's plugin if exists
 set      dir=/var/tmp,/tmp,.             " alter default dir for swap files
 
-" set scrolloff=20
 set backspace=2
 
 " Syntax of these languages is fussy over tabs Vs spaces
@@ -127,7 +126,7 @@ nmap <Leader>c ddp
 vmap <Leader>e xkP`[V`]
 vmap <Leader>c xp`[V`]
 
-" Easier window navigation
+"" Easier window navigation
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
@@ -135,21 +134,21 @@ nmap <C-l> <C-w>l
 
 set showmatch
 
-" Close buffer
+"" Close buffer
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 
-" Decrese delay after <leader>
+"" Decrese delay after <leader>
 set timeoutlen=500
 
-" Nicer non-printed characters
+"" Nicer non-printed characters
 set listchars=tab:⇥\ ,eol:↩
 
-"" UltiSnips
+" UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"" Neocomplete
+" Neocomplete
 " let g:neocomplete#enable_at_startup                 = 1
 " let g:neocomplete#enable_smart_case                 = 1
 " let g:neocomplete#sources#syntax#min_keyword_length = 4
@@ -162,14 +161,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"" EasyAlign
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+" EasyAlign
+"" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Define custom rules
+"" Define custom rules
 let g:easy_align_delimiters = {
 \ '>': { 'pattern': '>>\|=>\|->\|>' },
 \ '/': {
@@ -178,11 +177,10 @@ let g:easy_align_delimiters = {
 \     'ignore_groups':   ['!Comment'] },
 \ }
 
-"" Search
+" Search
 set ignorecase smartcase incsearch
-" noremap <f3> :nohlsearch<cr>
 
-"" Unite
+" Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
@@ -246,11 +244,11 @@ let g:indentLine_char = "┆"
 let g:indentLine_enabled = "0"
 
 
-"" Misc
-" Reload vimrc
+" Misc
+"" Reload vimrc
 map <f6> :w<bar>:source ~/.vimrc <cr>
 
-" Auto-correct case-sensitive typos
+"" Auto-correct case-sensitive typos
 if has("user_commands")
   command! -bang -nargs=? -complete=file E e<bang> <args>
   command! -bang -nargs=? -complete=file W w<bang> <args>
@@ -263,10 +261,10 @@ if has("user_commands")
   command! -bang Qa qa<bang>
 endif
 
-" Save as sudo
+"" Save as sudo
 cmap w!! w !sudo tee > /dev/null %
 
-" Create the directories missing from path when saving a file
+"" Create the directories missing from path when saving a file
 function s:MkNonExDir(file, buf)
   if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
     let dir=fnamemodify(a:file, ':h')
@@ -275,10 +273,11 @@ function s:MkNonExDir(file, buf)
     endif
   endif
 endfunction
+
 augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-" Allow creating hidden buffers without saving current changes
+"" Allow creating hidden buffers without saving current changes
 set hidden
