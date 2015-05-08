@@ -41,6 +41,9 @@ set -g status-left-length 90
 set -g status-right-length 60
 set -g status-right '%a %d %b %R'
 
+# Number windows starting from 1
+set -g base-index 1
+
 # Enable Solarized Dark color scheme
 
 ## default statusbar colors
