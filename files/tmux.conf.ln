@@ -19,13 +19,13 @@ bind -n M-k run-shell "$move_handler k"
 bind -n M-h run-shell "$move_handler h"
 bind -n M-l run-shell "$move_handler l"
 
-# Pane resizing
+# Set shortcuts for pane resizing
 bind-key + resize-pane -U 50
 bind-key - resize-pane -D 10
 bind-key > resize-pane -R 20
 bind-key < resize-pane -L 20
 
-# Copy-pasting
+# Enable copy-pasting
 unbind-key [
 bind-key Escape copy-mode
 unbind-key p
@@ -34,38 +34,38 @@ bind-key p paste-buffer
 bind-key -t vi-copy v begin-selection
 bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 
-# Status bar customization
+# Customize status bar
 set -g status-utf8 on
 set -g status-interval 5
 set -g status-left-length 90
 set -g status-right-length 60
 set -g status-right '%a %d %b %R'
 
-#### COLOUR (Solarized dark)
+# Enable Solarized Dark color scheme
 
-# default statusbar colors
+## default statusbar colors
 set-option -g status-bg colour240
 set-option -g status-fg colour7
 set-option -g status-attr default
 
-# default window title colors
-set-window-option -g window-status-fg colour180 #base00
+## default window title
+set-window-option -g window-status-fg colour180
 set-window-option -g window-status-bg default
 
-# pane border
+## pane border
 set-option -g pane-border-fg colour240
-set-option -g pane-active-border-fg colour7 #base1
+set-option -g pane-active-border-fg colour7
 
-# message text
-set-option -g message-bg colour231 #base2
-set-option -g message-fg colour196 #orange
+## message text
+set-option -g message-bg colour231
+set-option -g message-fg colour196
 
-# pane number display
-set-option -g display-panes-active-colour colour20 #blue
-set-option -g display-panes-colour colour196 #orange
+## pane number display
+set-option -g display-panes-active-colour colour20
+set-option -g display-panes-colour colour196
 
-# List of plugins
-## Supports `github_username/repo` or full git repo URLs
+# List plugins
+## `github_username/repo` or full git repo URL
 set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
   tmux-plugins/tmux-sensible       \
@@ -75,9 +75,9 @@ set -g @tpm_plugins '              \
   tmux-plugins/tmux-copycat        \
   tmux-plugins/tmux-yank           \
 '
-# Preserving sessions
+# Preserve sessions
 set -g @continuum-restore 'on'
 
-# Initializes TMUX plugin manager.
-# Keep this line at the very bottom of tmux.conf.
+# Initialize TMUX plugin manager.
+# !Keep this line at the very bottom of tmux.conf!
 run-shell '~/.tmux/plugins/tpm/tpm'
