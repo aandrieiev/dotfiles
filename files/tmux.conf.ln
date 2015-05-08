@@ -6,6 +6,11 @@ bind M-Space send-prefix
 # Use prefix + r to reload this config
 bind r source-file ~/.tmux.conf
 
+# Highlight the active window name
+set-window-option -g window-status-current-fg colour37 #cyan
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bright
+
 # Enable vi shortcuts
 set-window-option -g mode-keys vi
 bind -t vi-copy {      page-up
@@ -48,7 +53,6 @@ set -g base-index 1
 set -s escape-time 0
 
 # Enable Solarized Dark color scheme
-
 ## default statusbar colors
 set-option -g status-bg colour240
 set-option -g status-fg colour7
