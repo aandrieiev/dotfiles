@@ -70,8 +70,8 @@ set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
   tmux-plugins/tmux-sensible       \
   tmux-plugins/tpm                 \
-  # tmux-plugins/tmux-resurrect      \
-  # tmux-plugins/tmux-continuum      \
+  tmux-plugins/tmux-resurrect      \
+  tmux-plugins/tmux-continuum      \
   tmux-plugins/tmux-copycat        \
   tmux-plugins/tmux-yank           \
 '
