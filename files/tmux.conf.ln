@@ -44,6 +44,9 @@ set -g status-right '%a %d %b %R'
 # Number windows starting from 1
 set -g base-index 1
 
+# Allow for faster key repetition
+set -s escape-time 0
+
 # Enable Solarized Dark color scheme
 
 ## default statusbar colors
