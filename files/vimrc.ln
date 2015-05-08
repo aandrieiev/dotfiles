@@ -2,7 +2,7 @@
 set rtp+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Interface
+" Appearance
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
@@ -16,18 +16,13 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'elixir-lang/vim-elixir'
-" NeoBundle 'tpope/vim-surround'
-" NeoBundle 'Shougo/neocomplete',
 
 " Integration
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'xolox/vim-easytags'
-" NeoBundleLazy 'scrooloose/syntastic'
 
 " Support
 NeoBundle 'Shougo/vimproc.vim', {'build':{'mac':'make -f make_mac.mak'}}
-" NeoBundle 'xolox/vim-misc'
 
 call     neobundle#end()
 filetype plugin indent on
@@ -98,18 +93,6 @@ set      dir=/var/tmp,/tmp,.             " alter default dir for swap files
 
 set backspace=2
 
-" Syntax of these languages is fussy over tabs Vs spaces
-" autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-" Customisations based on house-style (arbitrary)
-" autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-
-" Treat .rss files as XML
-" autocmd BufNewFile,BufRead *.rss setfiletype xml
-
 set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8       " encoding
 set nobackup nowritebackup noswapfile autoread                 " no swap
 set clipboard=unnamed,unnamedplus
@@ -146,19 +129,6 @@ set listchars=tab:⇥\ ,eol:↩
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Neocomplete
-" let g:neocomplete#enable_at_startup                 = 1
-" let g:neocomplete#enable_smart_case                 = 1
-" let g:neocomplete#sources#syntax#min_keyword_length = 4
-" let g:neocomplete#sources#dictionary#dictionaries   = { 'default' : '' }
-" let g:neocomplete#enable_auto_select                = 1
-"
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " EasyAlign
 "" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -217,25 +187,6 @@ au FileType unite call s:UniteSettings()
 "" HTML, CSS files only
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,eruby EmmetInstall
-
-
-""""""""" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_enable_signs             = 1
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list            = 1
-" let g:syntastic_check_on_open            = 1
-" let g:syntastic_check_on_wq              = 0
-" let g:syntastic_auto_jump                = 1
-"let g:syntastic_debug = 1
-
-" let g:syntastic_ruby_checkers            = ['mri']
-
-" let g:syntastic_elixir_checkers = ['elixir']
-" let g:syntastic_enable_elixir_checker = 0
 
 " IndentLine
 nmap <Leader>il :IndentLinesToggle<CR>
