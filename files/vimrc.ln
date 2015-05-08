@@ -42,7 +42,6 @@ set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1     " required
 let g:solarized_termcolors=256  " required
-set t_Co=256                    " required by tmux
 
 " Airline
 set laststatus=2                                      " to show the airline
@@ -243,6 +242,40 @@ nmap <Leader>il :IndentLinesToggle<CR>
 let g:indentLine_char = "┆"
 let g:indentLine_enabled = "0"
 
+" Tmux integration
+if $TMUX != ''
+  fun! TmuxMove(direction)
+    " Check if we are currently focusing at an edge window.
+    " To achieve that,  move to/from the requested window and
+    " see if the window number changed
+    let oldw = winnr()
+    silent! exe 'wincmd ' . a:direction
+    let neww = winnr()
+    silent! exe oldw . 'wincmd'
+    if oldw == neww
+      " The focused window is at an edge, so ask tmux to switch panes
+      if a:direction == 'j'
+        call system("tmux select-pane -D")
+      elseif a:direction == 'k'
+        call system("tmux select-pane -U")
+      elseif a:direction == 'h'
+        call system("tmux select-pane -L")
+      elseif a:direction == 'l'
+        call system("tmux select-pane -R")
+      endif
+    else
+      exe 'wincmd ' . a:direction
+    end
+  endfun
+endif
+
+" for proper color use within tmux
+set t_Co=256
+
+nnoremap <silent> <c-w>j :silent call TmuxMove('j')<cr>
+nnoremap <silent> <c-w>k :silent call TmuxMove('k')<cr>
+nnoremap <silent> <c-w>h :silent call TmuxMove('h')<cr>
+nnoremap <silent> <c-w>l :silent call TmuxMove('l')<cr>
 
 " Misc
 "" Reload vimrc

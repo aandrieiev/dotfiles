@@ -1,18 +1,23 @@
-# Ctrl-b + r to reload this config
+# Set custom prefix
+unbind C-b
+set -g prefix M-Space
+bind M-Space send-prefix
+
+# Use prefix + r to reload this config
 bind r source-file ~/.tmux.conf
 
 # Enable vi shortcuts
 set-window-option -g mode-keys vi
+bind -t vi-copy {      page-up
+bind -t vi-copy }      page-down
 
-# Pane navigation
-unbind-key j
-bind-key j select-pane -D
-unbind-key k
-bind-key k select-pane -U
-unbind-key h
-bind-key h select-pane -L
-unbind-key l
-bind-key l select-pane -R
+# Integrate with vim for semaless pane/vim windows navigation
+move_handler="~/.bash/vim-tmux-move.sh"
+
+bind -n M-j run-shell "$move_handler j"
+bind -n M-k run-shell "$move_handler k"
+bind -n M-h run-shell "$move_handler h"
+bind -n M-l run-shell "$move_handler l"
 
 # Pane resizing
 bind-key + resize-pane -U 50
@@ -20,15 +25,14 @@ bind-key - resize-pane -D 10
 bind-key > resize-pane -R 20
 bind-key < resize-pane -L 20
 
-
 # Copy-pasting
 unbind-key [
 bind-key Escape copy-mode
 unbind-key p
 bind-key p paste-buffer
 
-# Set default TERM
-set-option -g default-terminal "screen-256color"
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 
 # Status bar customization
 set -g status-utf8 on
@@ -37,7 +41,7 @@ set -g status-left-length 90
 set -g status-right-length 60
 set -g status-right '%a %d %b %R'
 
-#### COLOUR (Solarized light)
+#### COLOUR (Solarized dark)
 
 # default statusbar colors
 set-option -g status-bg colour240
@@ -47,7 +51,6 @@ set-option -g status-attr default
 # default window title colors
 set-window-option -g window-status-fg colour180 #base00
 set-window-option -g window-status-bg default
-#set-window-option -g window-status-attr dim
 
 # pane border
 set-option -g pane-border-fg colour240
@@ -67,8 +70,10 @@ set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
   tmux-plugins/tmux-sensible       \
   tmux-plugins/tpm                 \
-  tmux-plugins/tmux-resurrect      \
-  tmux-plugins/tmux-continuum      \
+  # tmux-plugins/tmux-resurrect      \
+  # tmux-plugins/tmux-continuum      \
+  tmux-plugins/tmux-copycat        \
+  tmux-plugins/tmux-yank           \
 '
 # Preserving sessions
 set -g @continuum-restore 'on'
