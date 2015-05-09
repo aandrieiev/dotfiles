@@ -18,3 +18,7 @@ attempt to make it less painful.
 $ git clone https://github.com/aandrieiev/dotfiles.git && cd dotfiles
 $ sh scripts/installer.sh
 ```
+
+## Misc
+If you want to learn more about this state-of-art color scheme, please visit the
+[web-site of Solarized ](http://ethanschoonover.com/solarized "Solarized")
