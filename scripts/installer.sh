@@ -25,7 +25,8 @@ function install {
 }
 
 while true; do
-  read -p "Existing dotfile will be replaced from those in files/. Proceed (Y/N): " yn
+  echo "Your existing dotfile will be replaced with those from the 'files' directory."
+  read -p "Proceed (Y/N): " yn
     case $yn in
       [Yy]* ) install;  break;;
       [Nn]* ) echo "Aborting..."; exit;;
