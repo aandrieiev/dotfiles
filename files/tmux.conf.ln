@@ -6,11 +6,6 @@ bind M-Space send-prefix
 # Use prefix + r to reload this config
 bind r source-file ~/.tmux.conf
 
-# Highlight the active window name
-set-window-option -g window-status-current-fg colour37 #cyan
-set-window-option -g window-status-current-bg default
-set-window-option -g window-status-current-attr bright
-
 # Enable vi shortcuts
 set-window-option -g mode-keys vi
 bind -t vi-copy {      page-up
@@ -59,8 +54,14 @@ set-option -g status-fg colour7
 set-option -g status-attr default
 
 ## default window title
-set-window-option -g window-status-fg colour180
+set-window-option -g window-status-fg colour37
 set-window-option -g window-status-bg default
+
+##  active window title
+set-window-option -g window-status-current-fg colour180
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bright
+
 
 ## pane border
 set-option -g pane-border-fg colour240
