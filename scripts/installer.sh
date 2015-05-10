@@ -34,4 +34,6 @@ while true; do
     esac
 done
 
+source ~/.bashrc
+
 echo "Installation complete."
