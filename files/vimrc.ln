@@ -1,14 +1,17 @@
 " NeoBundle
+"
+
 set rtp+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Appearance
+"" Appearance
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'morhetz/gruvbox'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Yggdroot/indentLine'
 
-" Editing
+"" Editing
 NeoBundle 'raimondi/delimitmate'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'sirver/ultisnips',
@@ -17,26 +20,31 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'elixir-lang/vim-elixir'
 
-" Integration
+"" Integration
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
 
-" Support
+"" Support
 NeoBundle 'Shougo/vimproc.vim', {'build':{'mac':'make -f make_mac.mak'}}
-
 call     neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
+
 
 " Appearence
 syntax enable
 se cursorline
 
 "" Solarized color scheme
+set t_Co=256
+" set background=light
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1     " required
-let g:solarized_termcolors=256  " required
+" colorscheme solarized
+colorscheme gruvbox
+" let g:solarized_termtrans=1     " required
+" let g:solarized_termcolors=256  " required
+
+let g:gruvbox_contrast_light="hard"
 
 " Airline
 set laststatus=2                                      " to show the airline
@@ -46,7 +54,6 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1            " show buffers
 let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
 let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
-
 
 "" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
 let g:airline_mode_map = {
@@ -66,13 +73,6 @@ let g:airline_mode_map = {
 "" Hide encoding and format values from the statusline
 let g:airline_section_y=''
 
-" Version Control
-"" Fugitive
-nnoremap <space>gs :Gstatus<CR>
-
-"" Git-gutter
-let g:gitgutter_sign_column_always=1
-
 
 " Editing
 augroup OnBiffeWrite
@@ -85,6 +85,7 @@ set nowrap
 set number                               " show line numbers
 set colorcolumn=81                       " draw a vertical line
 set expandtab tabstop=2                  " expand tabs to 2 spaces
+set hidden                               " create buffers without saving changes
 set shiftwidth=2
 
 syntax   on
@@ -119,16 +120,21 @@ set showmatch
 "" Close buffer
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 
-"" Decrese delay after <leader>
+"" <Leader> settings
+" let mapleader=' '
+let mapleader="\<Space>"
+nnoremap <SPACE> <Nop>
 set timeoutlen=500
 
 "" Nicer non-printed characters
 set listchars=tab:⇥\ ,eol:↩
 
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 " EasyAlign
 "" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -146,8 +152,10 @@ let g:easy_align_delimiters = {
 \     'ignore_groups':   ['!Comment'] },
 \ }
 
+
 " Search
 set ignorecase smartcase incsearch
+
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -172,6 +180,7 @@ call unite#custom#profile('default', 'context', {
 
 nnoremap <leader>f :<C-u>Unite -start-insert buffer bookmark file_rec/async:!<CR>
 nnoremap <leader>t :<C-u>Unite grep:.<CR>
+noremap  <leader>s :Unite grep:.::<C-R><C-w><CR>
 
 function! s:UniteSettings()
   let b:actually_quit=0
@@ -183,15 +192,17 @@ endfunction
 
 au FileType unite call s:UniteSettings()
 
+
 " Emmet
 "" HTML, CSS files only
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,eruby EmmetInstall
 
+
 " IndentLine
 nmap <Leader>il :IndentLinesToggle<CR>
-let g:indentLine_char = "┆"
-let g:indentLine_enabled = "0"
+let g:indentLine_char = "|"
+
 
 " Tmux integration
 if $TMUX != ''
@@ -220,19 +231,30 @@ if $TMUX != ''
   endfun
 endif
 
-" for proper color use within tmux
-set t_Co=256
-
 nnoremap <silent> <c-w>j :silent call TmuxMove('j')<cr>
 nnoremap <silent> <c-w>k :silent call TmuxMove('k')<cr>
 nnoremap <silent> <c-w>h :silent call TmuxMove('h')<cr>
 nnoremap <silent> <c-w>l :silent call TmuxMove('l')<cr>
 
+
+" Version Control
+"" Fugitive
+nnoremap <space>gs :Gstatus<CR>
+
+"" Git-gutter
+let g:gitgutter_sign_column_always=1
+hi clear SignColumn
+hi GitGutterAdd ctermbg=bg
+hi GitGutterChange ctermbg=bg
+hi GitGutterDelete ctermbg=bg
+hi GitGutterChangeDelete ctermbg=bg
+
+
 " Misc
 "" Reload vimrc
 map <f6> :w<bar>:source ~/.vimrc <cr>
 
-"" Auto-correct case-sensitive typos
+"" Auto-correct typos
 if has("user_commands")
   command! -bang -nargs=? -complete=file E e<bang> <args>
   command! -bang -nargs=? -complete=file W w<bang> <args>
@@ -243,7 +265,12 @@ if has("user_commands")
   command! -bang Q q<bang>
   command! -bang QA qa<bang>
   command! -bang Qa qa<bang>
+  map q: :q
 endif
+
+"" Mappings
+nmap <Leader>w :w<CR>
+nmap <Leader>q :q<CR>
 
 "" Save as sudo
 cmap w!! w !sudo tee > /dev/null %
@@ -262,6 +289,3 @@ augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
-
-"" Allow creating hidden buffers without saving current changes
-set hidden
