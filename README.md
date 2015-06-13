@@ -5,20 +5,16 @@ attempt to make it less painful.
 ## What's inside
 
 #### bash
-![screenshot0](http://i.imgur.com/EkoAB1B.png?1)
+![screenshot0](/screenshots/bash.png?raw=true "Bash")
 
 #### vim
-![screenshot1](http://i.imgur.com/L83XMOI.png?1)
+![screenshot1](/screenshots/vim.png?raw=true "Vim")
 
 #### tmux
-![screenshot2](http://i.imgur.com/jZLquxd.png?1)
+![screenshot2](/screenshots/tmux.png?raw=true "Tmux")
 
 ## Installation
 ```bash
 $ git clone https://github.com/aandrieiev/dotfiles.git && cd dotfiles
 $ sh scripts/installer.sh
 ```
-
-## Misc
-If you want to learn more about this state-of-art color scheme, please visit the
-[web-site of Solarized ](http://ethanschoonover.com/solarized "Solarized")
