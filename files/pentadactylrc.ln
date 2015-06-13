@@ -27,6 +27,10 @@ hi -append -link FontFixed CompTitle
 " Search
 se findcase=smart
 
+" Google Cache
+:command! -nargs=0 cache :execute "open http://webcache.googleusercontent.com/search?q=cache:" + content.location.href "Test"
+noremap <leader>c :cache<CR>
+
 " Cyrillic symbols
 map пе gt
 map пЕ gT
