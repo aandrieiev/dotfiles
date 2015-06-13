@@ -121,7 +121,6 @@ set showmatch
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 
 "" <Leader> settings
-" let mapleader=' '
 let mapleader="\<Space>"
 nnoremap <SPACE> <Nop>
 set timeoutlen=500
