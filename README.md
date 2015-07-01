@@ -16,5 +16,5 @@ attempt to make it less painful.
 ## Installation
 ```bash
 $ git clone https://github.com/aandrieiev/dotfiles.git && cd dotfiles
-$ sh scripts/installer.sh
+$ sh bin/install.sh
 ```
