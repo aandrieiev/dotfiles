@@ -4,7 +4,6 @@ set rtp+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 "" Appearance
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
@@ -40,13 +39,10 @@ set timeoutlen=500
 syntax enable
 se cursorline
 
-"" Solarized color scheme
+"" Color scheme
 set t_Co=256
 set background=dark
-" colorscheme solarized
 colorscheme gruvbox
-" let g:solarized_termtrans=1     " required
-" let g:solarized_termcolors=256  " required
 let g:gruvbox_contrast_light="hard"
 
 
