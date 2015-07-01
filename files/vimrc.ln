@@ -278,9 +278,38 @@ hi GitGutterDelete ctermbg=bg
 hi GitGutterChangeDelete ctermbg=bg
 
 
+" Compile & run
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+  exec "w"
+  if &filetype == 'c'
+    exec "!gcc % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java -cp %:p:h %:t:r"
+  elseif &filetype == 'sh'
+    exec "!time bash %"
+  elseif &filetype == 'python'
+    exec "!time python2.7 %"
+  elseif &filetype == 'html'
+    exec "!firefox % &"
+  elseif &filetype == 'go'
+    exec "!go build %<"
+    exec "!time go run %"
+  elseif &filetype == 'mkd'
+    exec "!~/.vim/markdown.pl % > %.html &"
+    exec "!firefox %.html &"
+  endif
+endfunc
+
+
 " Misc
 "" Reload vimrc
-map <f6> :w<bar>:source ~/.vimrc<cr>:echo "config reloaded!"<cr>
+map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
 
 "" Auto-correct typos
 if has("user_commands")
