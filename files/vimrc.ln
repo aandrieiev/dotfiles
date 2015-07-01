@@ -21,6 +21,9 @@ NeoBundle 'elixir-lang/vim-elixir'
 "" Integration
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'xolox/vim-easytags'
+NeoBundle 'xolox/vim-misc'
 
 "" Support
 NeoBundle 'Shougo/vimproc.vim', {'build':{'mac':'make -f make_mac.mak'}}
@@ -128,6 +131,24 @@ set listchars=tab:⇥\ ,eol:↩
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_loc_list_height=5
+
+let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "active_filetypes": ["ruby", "eruby", "html", "javascript"],
+        \ "passive_filetypes": ["puppet"] }
 
 
 " EasyAlign
