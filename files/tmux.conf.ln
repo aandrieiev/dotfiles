@@ -20,7 +20,7 @@ bind -n M-h run-shell "$move_handler h"
 bind -n M-l run-shell "$move_handler l"
 
 # Set shortcuts for pane resizing
-bind-key + resize-pane -U 50
+bind-key + resize-pane -U 20
 bind-key - resize-pane -D 10
 bind-key > resize-pane -R 20
 bind-key < resize-pane -L 20
@@ -61,7 +61,6 @@ set-window-option -g window-status-bg default
 set-window-option -g window-status-current-fg colour180
 set-window-option -g window-status-current-bg default
 set-window-option -g window-status-current-attr bright
-
 
 ## pane border
 set-option -g pane-border-fg colour240
