@@ -38,6 +38,7 @@ noremap <Leader>c :cache<CR>
 map пе gt
 map пЕ gT
 map пп gg
+map . /
 
 map Ф A
 map И B
