@@ -40,7 +40,9 @@ set timeoutlen=500
 
 " Appearence
 syntax enable
-se cursorline
+set cursorline
+set wildmenu
+set lazyredraw                                    " redraw only when we need to
 
 "" Color scheme
 set t_Co=256
@@ -120,13 +122,17 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-set showmatch
+set showmatch " highlights matching braces
 
 "" Close buffer
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 
 "" Nicer non-printed characters
 set listchars=tab:⇥\ ,eol:↩
+
+"" Move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 
 " UltiSnips
