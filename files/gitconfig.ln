@@ -27,3 +27,7 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
   trustExitCode = true
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
