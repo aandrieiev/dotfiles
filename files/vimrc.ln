@@ -73,12 +73,6 @@ let g:airline_mode_map = {
       \ '' : 'S',
       \ }
 
-"" Hide encoding and format values from the statusline
-" let g:airline_section_y=''
-
-"" Hide separators
-" let g:airline_right_sep=''
-" let g:airline_left_sep=''
 let g:airline_left_alt_sep = '/'
 
 " Editing
@@ -140,6 +134,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -154,9 +149,10 @@ let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_loc_list_height=5
 
 let g:syntastic_mode_map = {
-        \ "mode": "active",
-        \ "active_filetypes": ["ruby", "eruby", "html", "javascript"],
-        \ "passive_filetypes": ["puppet"] }
+\ "mode": "active",
+\ "active_filetypes": ["ruby", "eruby", "html", "javascript"],
+\ "passive_filetypes": ["puppet"]
+\}
 
 
 " EasyAlign
@@ -221,8 +217,6 @@ function! s:UniteSettings()
   au InsertLeave <buffer> let b:actually_quit=1
   au CursorHold  <buffer> if exists('b:actually_quit') && b:actually_quit | close | endif
 endfunction
-
-" au FileType unite call s:UniteSettings()
 
 
 " Emmet
