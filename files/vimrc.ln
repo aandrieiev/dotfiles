@@ -311,6 +311,8 @@ func! CompileRun()
   elseif &filetype == 'mkd'
     exec "!~/.vim/markdown.pl % > %.html &"
     exec "!firefox %.html &"
+  elseif &filetype == 'cs'
+    exec "!mcs % && mono %:r.exe"
   endif
 endfunc
 
