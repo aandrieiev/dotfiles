@@ -85,8 +85,9 @@ set -g @tpm_plugins '              \
   tmux-plugins/tmux-copycat        \
   tmux-plugins/tmux-yank           \
 '
-# Preserve sessions
+# Preserve sessions (including vim sessions!)
 set -g @continuum-restore 'on'
+set -g @resurrect-strategy-vim 'session'
 
 # Initialize TMUX plugin manager.
 # !Keep this line at the very bottom of tmux.conf!
