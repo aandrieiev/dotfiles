@@ -57,5 +57,6 @@ while true; do
 done
 
 source ~/.bashrc
+install_neobundle && echo "Done installing NeoBundle"
 
 echo "Installation complete."
