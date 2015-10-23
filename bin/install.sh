@@ -55,7 +55,7 @@ function install_dependencies {
 
       if [ "$DISTRIB_ID" = "Ubuntu" ]; then
         echo "Going to install Vim plugin dependencies"
-        sudo apt-get install exuberant-ctags make gcc &&
+        sudo apt-get -y install exuberant-ctags make gcc &&
         echo "Vim plugin dependencies installed"
       else
         echo "Don't know how to install dependencies for $DISTRIB_ID"
