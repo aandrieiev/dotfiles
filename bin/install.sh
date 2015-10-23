@@ -6,7 +6,7 @@ function absolute_path {
   echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
 }
 
-function install {
+function install_dotfiles {
   for f in $files_dir/*; do
     basename=$(basename $f)
 
@@ -27,7 +27,7 @@ while true; do
   echo "Your existing dotfile will be replaced with those from the 'files' directory."
   read -p "Proceed (Y/N): " yn
     case $yn in
-      [Yy]* ) install;  break;;
+      [Yy]* ) install_dotfiles;  break;;
       [Nn]* ) echo "Aborting..."; exit;;
       * ) echo "Please answer Y or N.";;
     esac
