@@ -19,7 +19,6 @@ function install {
       rm -r ~/$target
     fi
 
-    echo $(absolute_path $f)
     ln -s $(absolute_path $f) ~/$target
   done
 }
