@@ -46,7 +46,7 @@ function install_neobundle {
 }
 
 while true; do
-  echo "Your existing dotfile will be replaced with those from the 'files' directory."
+  echo "Your existing dotfiles will be replaced with those from the 'files' directory."
   read -p "Proceed (Y/N): " yn
     case $yn in
       [Yy]* ) install_dotfiles;  break;;
