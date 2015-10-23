@@ -45,6 +45,28 @@ function install_neobundle {
   fi
 }
 
+function install_dependencies {
+  local os=$(uname -s)
+  echo $os
+
+  case $os in
+    Linux)
+      . /etc/lsb-release
+
+      if [ "$DISTRIB_ID" = "Ubuntu" ]; then
+        echo "Going to install Vim plugin dependencies"
+        sudo apt-get install exuberant-ctags make gcc &&
+        echo "Vim plugin dependencies installed"
+      else
+        echo "Don't know how to install dependencies for $DISTRIB_ID"
+      fi
+      ;;
+    Darwin)
+      brew update && brew install ctags make clang
+      ;;
+  esac
+}
+
 while true; do
   echo "Your existing dotfiles will be replaced with those from the 'files' directory."
   read -p "Proceed (Y/N): " yn
@@ -58,5 +80,6 @@ done
 
 source ~/.bashrc
 install_neobundle && echo "Done installing NeoBundle"
+install_dependencies && echo "Dependenciea installed"
 
 echo "Installation complete."
