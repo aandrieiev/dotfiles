@@ -31,3 +31,6 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[user]
+  email = aandrieiev@users.noreply.github.com
+  name = aandrieiev
