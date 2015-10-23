@@ -28,9 +28,16 @@ NeoBundle 'xolox/vim-misc'
 "" Sessions
 NeoBundle 'tpope/vim-obsession'
 
-
 "" Support
-NeoBundle 'Shougo/vimproc.vim', {'build':{'mac':'make -f make_mac.mak'}}
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \    },
+      \ }
 call     neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
