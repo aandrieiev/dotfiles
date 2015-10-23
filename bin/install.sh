@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-files_dir=./files
+files_dir=../files
 
 function absolute_path {
   echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")
