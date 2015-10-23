@@ -23,6 +23,28 @@ function install_dotfiles {
   done
 }
 
+function install_neobundle {
+  echo "Installing NeoBundle, a Vim package manager.."
+  local bundle_path="~/.vim/bundle"
+  local neobundle_path="$bundle_path/neobundle.vim"
+
+  if [ ! -d $bundle_path ]; then
+    mkdir -p $bundle_path
+    git clone https://github.com/Shougo/neobundle.vim $neobundle_path
+  else
+    cd $neobundle_path
+
+    if [ ! -d .git ]; then
+      echo "doing what's required"
+      git init
+      git remote add origin https://github.com/Shougo/neobundle.vim.git
+      git branch --set-upstream-to=origin/master master
+    fi
+
+    git pull
+  fi
+}
+
 while true; do
   echo "Your existing dotfile will be replaced with those from the 'files' directory."
   read -p "Proceed (Y/N): " yn
