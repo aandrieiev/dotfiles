@@ -25,7 +25,7 @@ function install_dotfiles {
 
 function install_neobundle {
   echo "Installing NeoBundle, a Vim package manager.."
-  local bundle_path="~/.vim/bundle"
+  local bundle_path="$HOME/.vim/bundle"
   local neobundle_path="$bundle_path/neobundle.vim"
 
   if [ ! -d $bundle_path ]; then
@@ -47,7 +47,6 @@ function install_neobundle {
 
 function install_dependencies {
   local os=$(uname -s)
-  echo $os
 
   case $os in
     Linux)
