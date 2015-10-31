@@ -100,7 +100,7 @@ function set_prompt_command {
   fi
 
   if [ -n "$SSH_CLIENT" ]; then
-    SSH_PROMPT="${color_user}${USER}@${color_yellow}${HOSTNAME}:$"
+    SSH_PROMPT="${color_user}${USER}@${color_yellow}${HOSTNAME}:"
   else
     SSH_PROMPT=""
   fi
