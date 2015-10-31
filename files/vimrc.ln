@@ -292,7 +292,7 @@ hi GitGutterChangeDelete ctermbg=bg
 
 
 " Compile & run
-map <F5> :call CompileRun()<CR>
+map <leader>r :call CompileRun()<CR>
 func! CompileRun()
   exec "w"
   if &filetype == 'c'
