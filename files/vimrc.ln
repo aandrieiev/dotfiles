@@ -303,7 +303,7 @@ func! CompileRun()
     exec "!time ./%<"
   elseif &filetype == 'java'
     exec "!javac %"
-    exec "!time java -cp %:p:h %:t:r"
+    exec "!java -cp %:p:h %:t:r"
   elseif &filetype == 'sh'
     exec "!time bash %"
   elseif &filetype == 'python'
