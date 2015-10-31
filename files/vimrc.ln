@@ -91,9 +91,14 @@ set wildignorecase
 set nowrap
 set number                               " show line numbers
 set colorcolumn=81                       " draw a vertical line
-set expandtab tabstop=2                  " expand tabs to 2 spaces
+set expandtab tabstop=4                  " expand tabs to 2 spaces
 set hidden                               " create buffers without saving changes
-set shiftwidth=2
+set shiftwidth=4
+
+"" Filetype-specific
+"" for more advanced setup, use ~/.vim/ftplygin/filetype.vim
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 
 syntax   on
 filetype plugin on                       " load ft's plugin if exists
