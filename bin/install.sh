@@ -47,7 +47,6 @@ function install_neobundle {
 
 function install_dependencies {
   local os=$(uname -s)
-  echo $os
 
   case $os in
     Linux)
