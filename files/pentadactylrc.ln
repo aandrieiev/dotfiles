@@ -34,7 +34,7 @@ se findcase=smart
 :command! -nargs=0 cache :execute "open http://webcache.googleusercontent.com/search?q=cache:" + content.location.href
 noremap <Leader>c :cache<CR>
 
-" Ping ya.ru"
+" Ping ya.ru
 noremap <Leader>p :tabopen ya.ru<CR>
 
 " Cyrillic symbols

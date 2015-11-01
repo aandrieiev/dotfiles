@@ -102,11 +102,6 @@ set expandtab tabstop=4                  " expand tabs to 2 spaces
 set hidden                               " create buffers without saving changes
 set shiftwidth=4
 
-"" Filetype-specific
-"" for more advanced setup, use ~/.vim/ftplygin/filetype.vim
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
-
 syntax   on
 filetype plugin on                       " load ft's plugin if exists
 set      dir=/var/tmp,/tmp,.             " alter default dir for swap files
@@ -127,6 +122,12 @@ nmap <Leader>c ddp
 
 vmap <Leader>e xkP`[V`]
 vmap <Leader>c xp`[V`]
+
+" Filetype-specific
+" NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+
 
 "" use an undo file
 set undofile
