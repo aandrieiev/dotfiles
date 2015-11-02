@@ -1,6 +1,5 @@
 .DS_Store
 files/pentadactyl.ln/info
-files/bash.ln/*
-!files/bash.ln/vim-tmux-move.sh
+files/bash.ln/extras
 
 notes.txt
