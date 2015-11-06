@@ -32,10 +32,13 @@ se findcase=smart
 
 " Google Cache
 :command! -nargs=0 cache :execute "open http://webcache.googleusercontent.com/search?q=cache:" + content.location.href
-noremap <Leader>c :cache<CR>
+noremap <leader>c :cache<CR>
 
 " Ping ya.ru
-noremap <Leader>p :tabopen ya.ru<CR>
+noremap <leader>p :tabopen ya.ru<CR>
+
+" Duplicate tab
+noremap <leader>t :tabduplicate<CR>
 
 " Cyrillic symbols
 map пе gt
