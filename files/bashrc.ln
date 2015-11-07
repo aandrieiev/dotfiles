@@ -1,8 +1,11 @@
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# source extras
-for f in ~/.bash/*; do . $f; done
+# set working dir
+BASHRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#
+# source extras TODO: make it sources for root too
+for f in $BASHRC_DIR/.bash/*; do . $f; done
 
 # enable vi mode
 # set -o vi
@@ -99,19 +102,29 @@ function set_prompt_command {
     local __GIT_PS1=" $__GIT_PS1_WITHOUT_PARENTHESES"
   fi
 
-  if [ -n "$SSH_CLIENT" ]; then
-    SSH_PROMPT="${color_user}${USER}@${color_yellow}${HOSTNAME}:"
+  if [ -n "$SSH_TTY" ]; then
+    SSH_PROMPT="${color_user}${USER}@${HOSTNAME}:"
   else
     SSH_PROMPT=""
   fi
 
-  PS1="λ  ${SSH_PROMPT}${color_white}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
+  PS1="${color_user}λ  ${SSH_PROMPT}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
 }
 
 PROMPT_COMMAND=set_prompt_command
 
 # grep colorize
 export GREP_OPTIONS="--color=auto"
+
+# alias functions ;)
+
+sudo () {
+    if [[ $@ == '-s' ]]; then
+       command sudo SSH_TTY=$SSH_TTY -s
+    else
+        command sudo $@
+    fi
+}
 
 # aliases
 alias ..='cd ..'
