@@ -1,8 +1,11 @@
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# source extras
-for f in ~/.bash/*; do . $f; done
+# set working dir
+BASHRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#
+# source extras TODO: make it sources for root too
+for f in $BASHRC_DIR/.bash/*; do . $f; done
 
 # enable vi mode
 # set -o vi
