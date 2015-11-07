@@ -102,8 +102,8 @@ function set_prompt_command {
     local __GIT_PS1=" $__GIT_PS1_WITHOUT_PARENTHESES"
   fi
 
-  if [ -n "$SSH_CLIENT" ]; then
-    SSH_PROMPT="${color_user}${USER}@${color_yellow}${HOSTNAME}:"
+  if [ -n "$SSH_TTY" ]; then
+    SSH_PROMPT="${color_user}${USER}@${HOSTNAME}:"
   else
     SSH_PROMPT=""
   fi
