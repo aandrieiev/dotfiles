@@ -108,7 +108,7 @@ function set_prompt_command {
     SSH_PROMPT=""
   fi
 
-  PS1="λ  ${SSH_PROMPT}${color_white}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
+  PS1="${color_user}λ  ${SSH_PROMPT}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
 }
 
 PROMPT_COMMAND=set_prompt_command
