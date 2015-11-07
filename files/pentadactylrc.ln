@@ -17,7 +17,7 @@ map <Space> <Leader>
 
 " Custom font
 hi FontFixed -append font-size: 10pt !important; font-family: "Luculent" !important;
-hi Hint -a font-size: 11pt !important; font-font: "Luculent" !important; color: #4a400e !important; outline: 0px !important; background-color: rgb(254, 218, 49) !important; top: -1px; left: -1px; padding: 1px 3px 0px 3px !important; border-radius: 2px !important; box-shadow: rgb(179, 153, 34) 0px -2px 0px inset !important;
+hi Hint -a font-size: 11pt !important; font-family: "Luculent" !important; color: #4a400e !important; outline: 0px !important; background-color: rgb(254, 218, 49) !important; top: -1px; left: -1px; padding: 1px 3px 0px 3px !important; border-radius: 2px !important; box-shadow: rgb(179, 153, 34) 0px -2px 0px inset !important;
 
 " Hints
 se hintkeys=gyuiopqwhjklasdfertnmzxcvb
