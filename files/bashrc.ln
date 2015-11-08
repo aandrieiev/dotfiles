@@ -61,8 +61,14 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 
   # set user color
   case `id -u` in
-    0) color_user=$color_red ;;
-    *) color_user=$color_green ;;
+    0)
+      color_user=$color_red
+      user_prompt_char='#'
+      ;;
+    *)
+      color_user=$color_green
+      user_prompt_char='λ'
+      ;;
   esac
 fi
 
@@ -108,7 +114,7 @@ function set_prompt_command {
     SSH_PROMPT=""
   fi
 
-  PS1="${color_user}λ  ${SSH_PROMPT}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
+  PS1="${color_user}${user_prompt_char}  ${SSH_PROMPT}${PWDNAME} ${color_yellow}${__GIT_PS1}${color_off}\n↳  "
 }
 
 PROMPT_COMMAND=set_prompt_command
