@@ -156,3 +156,6 @@ alias pub_ip='curl ipecho.net/plain;echo'
 alias mig='rake db:migrate && rake db:migrate RAILS_ENV=test'
 
 alias tmux='tmux -2'
+alias :q='exit'
+alias vim='nvim'
+alias im='nvim'
