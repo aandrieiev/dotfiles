@@ -40,6 +40,13 @@ noremap <leader>p :tabopen ya.ru<CR>
 " Duplicate tab
 noremap <leader>t :tabduplicate<CR>
 
+" Run the page through Google Translate
+:command! -nargs=0 translate :execute "open http://translate.google.com/translate?u=" + content.location.href
+noremap <leader>e :translate<CR>
+
+nnoremap <leader>f :tabopen
+
+
 " Cyrillic symbols
 map пе gt
 map пЕ gT
