@@ -1,94 +1,64 @@
-" NeoBundle
-"" Basic setup
-set rtp+=~/.vim/bundle/neobundle.vim
-call neobundle#begin(expand('~/.vim/bundle/'))
+""" Install/Load Plugins
+call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
+    Plug 'bling/vim-airline'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'raimondi/delimitmate'
+    Plug 'mattn/emmet-vim'
+    Plug 'tomtom/tcomment_vim'
+    Plug 'yggdroot/indentLine'
+    Plug 'kien/ctrlp.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
 
+    " Only for workstation installations
+    if has('nvim')
+      Plug 'tpope/vim-obsession'
+      Plug 'benekastah/neomake'
+    endif
+call plug#end()
+
+""" Vim Settings
 "" Appearance
-NeoBundle 'morhetz/gruvbox'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'Yggdroot/indentLine'
-
-"" Editing
-NeoBundle 'raimondi/delimitmate'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'sirver/ultisnips',
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'elixir-lang/vim-elixir'
-
-"" Integration
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'xolox/vim-easytags'
-NeoBundle 'xolox/vim-misc'
-
-"" Sessions
-NeoBundle 'tpope/vim-obsession'
-
-"" Support
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
-call     neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
-
-
-" Leader settings
-let mapleader="\<Space>"
-nnoremap <SPACE> <Nop>
-set timeoutlen=500
-
-
-" Appearence
-syntax enable
-set cursorline
-set wildmenu
-set lazyredraw                                    " redraw only when we need to
-
-"" Color scheme
-set t_Co=256
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " true color for nvim TUI
+else
+  set t_Co=256                      " 256-colors for vim
+end
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_light="hard"
 
+syntax enable
+set cursorline
+set lazyredraw                                 " redraw only when really need to
+set nohlsearch
+set listchars=tab:⇥\ ,eol:↩                    " nicer non-printed characters
 
-" Airline
-set laststatus=2                                      " to show the airline
-set noshowmode                                        " hide vim mode indidicator
-let g:airline_extensions=['branch', 'tabline']
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1            " show buffers
-let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
-let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
+filetype plugin on                             " load ft's plugin if exists
 
-"" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
+"" Auto-correct typos
+if has("user_commands")
+  command! -bang -nargs=? -complete=file E e<bang> <args>
+  command! -bang -nargs=? -complete=file W w<bang> <args>
+  command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+  map q: :q
+endif
 
-let g:airline_left_alt_sep = '/'
+"" Behavior
+" Change <leader>
+let mapleader="\<Space>"
+nnoremap <SPACE> <Nop>
 
-" Editing
+set nobackup nowritebackup noswapfile " disable swap files
+
 augroup OnBiffeWrite
   autocmd bufwritepre * :%s/\s\+$//e     " autoremove trailing whitespaces
   autocmd bufwritepre * :retab           " convert tabs<->spaces
@@ -98,30 +68,80 @@ set wildignorecase
 set nowrap
 set number                               " show line numbers
 set colorcolumn=81                       " draw a vertical line
-set expandtab tabstop=4                  " expand tabs to 2 spaces
-set hidden                               " create buffers without saving changes
-set shiftwidth=4
-
-syntax   on
-filetype plugin on                       " load ft's plugin if exists
-set      dir=/var/tmp,/tmp,.             " alter default dir for swap files
-
+set expandtab tabstop=2                  " expand tabs to 2 spaces
+set shiftwidth=2
 set backspace=2
+set hidden                               " create buffers without saving changes
 
-set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8       " encoding
-set nobackup nowritebackup noswapfile autoread                 " no swap
-set clipboard=unnamed,unnamedplus
+set nobackup nowritebackup noswapfile autoread " no swap
+set clipboard=unnamed,unnamedplus              " share system clipboard
 set nofoldenable
+set timeoutlen=500
 
+" Buffer navigation
 nmap L :bnext<cr>
 nmap H :bprevious<cr>
 imap jj <esc>
 
-nmap <Leader>e ddkP
-nmap <Leader>c ddp
+" Close buffer, save file, quit
+nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
 
-vmap <Leader>e xkP`[V`]
-vmap <Leader>c xp`[V`]
+" Compile & run
+map <leader>r :call CompileRun()<CR>
+func! CompileRun()
+  exec "w"
+  if &filetype == 'c'
+    exec "!gcc % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!java -cp %:p:h %:t:r"
+  elseif &filetype == 'sh'
+    exec "!time bash %"
+  elseif &filetype == 'python'
+    exec "!time python2.7 %"
+  elseif &filetype == 'html'
+    exec "!firefox % &"
+  elseif &filetype == 'go'
+    exec "!go build %<"
+    exec "!go run %"
+  elseif &filetype == 'mkd'
+    exec "!~/.vim/markdown.pl % > %.html &"
+    exec "!firefox %.html &"
+  elseif &filetype == 'cs'
+    exec "!mcs % && mono %:r.exe"
+  endif
+endfunc
+
+" Create the directories missing from path when saving a file
+if !exists("*MkNonExDir")
+  function MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+      let dir=fnamemodify(a:file, ':h')
+      if !isdirectory(dir)
+        call mkdir(dir, 'p')
+      endif
+    endif
+  endfunction
+endif
+
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
+" Easier window navigation
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+set showmatch " highlights matching braces
 
 " Filetype-specific
 " NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
@@ -131,129 +151,19 @@ autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile .pentadactylrc  setfiletype vim
 autocmd BufRead,BufNewFile *.template  setfiletype json
 
-"" use an undo file
-set undofile
-set undodir=/Users/aandrieiev/.vimundo/
+" Move line up/down
+nmap <Leader>e ddkP
+nmap <Leader>c ddp
 
-"" Easier window navigation
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-set showmatch " highlights matching braces
-
-"" Close buffer
-nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
-
-"" Nicer non-printed characters
-set listchars=tab:⇥\ ,eol:↩
-
-"" Move vertically by visual line
+" Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
-" Syntastic
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_error_symbol = "☢"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_loc_list_height=5
-
-let g:syntastic_mode_map = {
-\ "mode": "active",
-\ "active_filetypes": ["ruby", "eruby", "html", "javascript"],
-\ "passive_filetypes": ["puppet"]
-\}
-
-
-" EasyAlign
-"" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-"" Define custom rules
-let g:easy_align_delimiters = {
-\ '>': { 'pattern': '>>\|=>\|->\|>' },
-\ '/': {
-\     'pattern':         '//\+\|/\*\|\*/',
-\     'delimiter_align': 'l',
-\     'ignore_groups':   ['!Comment'] },
-\ }
-
+" Nicer non-printed characters
+set listchars=tab:⇥\ ,eol:↩
 
 " Search
-set ignorecase smartcase incsearch
-
-
-" Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-let g:unite_enable_short_source_names=1
-let g:unite_source_rec_max_cache_files=0
-
-let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
-let unite_ignore_pattern='app\/assets\/images\|_build\|.git\|tmp\|.tmp\|.bower-cache\|vendor'
-
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', unite_ignore_pattern)
-
-call unite#custom#profile('default', 'context', {
-\   'winheight': 15,
-\   'no-auto-resize': 1,
-\   'direction': 'botright',
-\   'prompt':  '↳ ',
-\   'prompt_direction': 'top',
-\ })
-
-nnoremap <leader>f :<C-u>Unite -start-insert buffer file_rec/async:!<CR>
-nnoremap <leader>b :<C-u>Unite -start-insert bookmark:*<CR>
-nnoremap <leader>st :<C-u>Unite grep:.<CR>
-nnoremap <leader>t :<C-u>Unite grep:.::<C-R><C-w><CR>
-nnoremap <Leader>g :<C-u>Unite -buffer-name=search -start-insert line<cr>
-" under-cursor word in the dir
-" noremap <silent> <Leader>s :Unite grep:.::<C-R><C-w><CR>
-" cur buff
-" noremap <silent> <Leader>sf :Unite grep:%::<C-r><C-w><CR>
-" opened buffs
-" noremap <silent> <Leader>sa :Unite grep:$buffers::<C-r><C-w><CR>
-
-function! s:UniteSettings()
-  let b:actually_quit=0
-  setlocal updatetime=3
-  au InsertEnter <buffer> let b:actually_quit=0
-  au InsertLeave <buffer> let b:actually_quit=1
-  au CursorHold  <buffer> if exists('b:actually_quit') && b:actually_quit | close | endif
-endfunction
-
-
-" Emmet
-"" HTML, CSS files only
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,eruby EmmetInstall
-
-
-" IndentLine
-nmap <Leader>il :IndentLinesToggle<CR>
-let g:indentLine_char = "|"
-let g:indentLine_enabled = 0
+set ignorecase smartcase
 
 " Tmux integration
 if $TMUX != ''
@@ -280,15 +190,121 @@ if $TMUX != ''
       exe 'wincmd ' . a:direction
     end
   endfun
+
+  nnoremap <silent> <c-w>j :silent call TmuxMove('j')<cr>
+  nnoremap <silent> <c-w>k :silent call TmuxMove('k')<cr>
+  nnoremap <silent> <c-w>h :silent call TmuxMove('h')<cr>
+  nnoremap <silent> <c-w>l :silent call TmuxMove('l')<cr>
 endif
 
-nnoremap <silent> <c-w>j :silent call TmuxMove('j')<cr>
-nnoremap <silent> <c-w>k :silent call TmuxMove('k')<cr>
-nnoremap <silent> <c-w>h :silent call TmuxMove('h')<cr>
-nnoremap <silent> <c-w>l :silent call TmuxMove('l')<cr>
+" Terminal buffer navigation (NVIM-only, experimental)
+" if has('nvim')
+"   tnoremap <M-h> <C-\><C-n><C-w>h
+"   tnoremap <M-j> <C-\><C-n><C-w>j
+"   tnoremap <M-k> <C-\><C-n><C-w>k
+"   tnoremap <M-l> <C-\><C-n><C-w>l
+"   nnoremap <A-h> <C-w>h
+    " nnoremap <A-j> <C-w>j
+    " nnoremap <A-k> <C-w>k
+    " nnoremap <A-l> <C-w>l
+" end
+
+" Reload vimrc
+" map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
+map <f6> :w<bar>:source %<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
+
+" Save as sudo
+cmap w!! w !sudo tee > /dev/null %
+
+" Undo file
+if has('persistent_undo')
+    let vimDir = '$HOME/.vim'
+    let &runtimepath.=','.vimDir
 
 
-" Version Control
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
+" Set parameters not defaulted in Vim, but defaulted in NeoVim
+if has('vim')
+  set nocompatible
+  set t_Co=256 " failover for remote machines
+  set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8       " encoding
+
+  set autoread
+  set incsearch
+  set laststatus=2                                      " to show the airline
+  set wildmenu
+endif
+
+""" Plugin Settings
+"" Airline
+set noshowmode                                        " hide vim mode indidicator
+let g:airline_extensions=['branch', 'tabline']
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1            " show buffers
+let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
+let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
+
+" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S'
+\ }
+
+let g:airline_left_alt_sep = '/'
+
+"" CtrlP
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup
+
+  " Use ag in CtrlP for listing files. Lightning fast and
+  " respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore ".git" -g ""'
+endif
+
+nnoremap <leader>f :CtrlP<CR>
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+"" Cursor shape
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+"" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Define custom rules
+let g:easy_align_delimiters = {
+\ '>': { 'pattern': '>>\|=>\|->\|>' },
+\ '/': {
+\     'pattern':         '//\+\|/\*\|\*/',
+\     'delimiter_align': 'l',
+\     'ignore_groups':   ['!Comment'] },
+\ }
+
+"" Emmet, HTML, CSS files only
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,eruby EmmetInstall
+
 "" Fugitive
 nnoremap <space>gs :Gstatus<CR>
 
@@ -300,76 +316,33 @@ hi GitGutterChange ctermbg=bg
 hi GitGutterDelete ctermbg=bg
 hi GitGutterChangeDelete ctermbg=bg
 
+"" IndentLine
+nmap <Leader>il :IndentLinesToggle<CR>
+let g:indentLine_char = "|"
+let g:indentLine_enabled = 0
 
-" Compile & run
-map <leader>r :call CompileRun()<CR>
-func! CompileRun()
-  exec "w"
-  if &filetype == 'c'
-    exec "!gcc % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!java -cp %:p:h %:t:r"
-  elseif &filetype == 'sh'
-    exec "!time bash %"
-  elseif &filetype == 'python'
-    exec "!time python2.7 %"
-  elseif &filetype == 'html'
-    exec "!firefox % &"
-  elseif &filetype == 'go'
-    exec "!go build %<"
-    exec "!time go run %"
-  elseif &filetype == 'mkd'
-    exec "!~/.vim/markdown.pl % > %.html &"
-    exec "!firefox %.html &"
-  elseif &filetype == 'cs'
-    exec "!mcs % && mono %:r.exe"
-  endif
-endfunc
+"" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_enable_highlighting = 0
+" let g:syntastic_error_symbol = "☢"
+" let g:syntastic_warning_symbol = "⚠"
+" let g:syntastic_loc_list_height=5
+"
+" let g:syntastic_mode_map = {
+"       \ "mode": "active",
+"       \ "active_filetypes": ["ruby", "eruby", "html", "javascript"],
+"       \ "passive_filetypes": ["puppet"]
+"       \}
+"" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Misc
-"" Reload vimrc
-map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
+nmap <C-h> <C-w>h
 
-"" Auto-correct typos
-if has("user_commands")
-  command! -bang -nargs=? -complete=file E e<bang> <args>
-  command! -bang -nargs=? -complete=file W w<bang> <args>
-  command! -bang -nargs=? -complete=file Wq wq<bang> <args>
-  command! -bang -nargs=? -complete=file WQ wq<bang> <args>
-  command! -bang Wa wa<bang>
-  command! -bang WA wa<bang>
-  command! -bang Q q<bang>
-  command! -bang QA qa<bang>
-  command! -bang Qa qa<bang>
-  map q: :q
-endif
-
-"" Mappings
-nmap <Leader>w :w<CR>
-nmap <Leader>q :q<CR>
-
-"" Save as sudo
-cmap w!! w !sudo tee > /dev/null %
-
-"" Create the directories missing from path when saving a file
-if !exists("*MkNonExDir")
-  function MkNonExDir(file, buf)
-    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-      let dir=fnamemodify(a:file, ':h')
-      if !isdirectory(dir)
-        call mkdir(dir, 'p')
-      endif
-    endif
-  endfunction
-endif
-
-augroup BWCCreateDir
-  autocmd!
-  autocmd BufWritePre * :call MkNonExDir(expand('<afile>'), +expand('<abuf>'))
-augroup END
