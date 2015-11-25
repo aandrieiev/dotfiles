@@ -1,6 +1,6 @@
 ## Intro
-Setting up a new environment, either local or remote, can be a pain. This is my
-attempt to make it less painful.
+Setting up a new environment, either local or remote, is always a pain.
+This is my attempt to make it less painful.
 
 ## What's inside
 
