@@ -125,11 +125,11 @@ export GREP_OPTIONS="--color=auto"
 # alias functions ;)
 
 sudo () {
-    if [[ $@ == '-s' ]]; then
-       command sudo SSH_TTY=$SSH_TTY -s
-    else
-        command sudo $@
-    fi
+  if [[ $@ == '-s' ]]; then
+     command sudo SSH_TTY=$SSH_TTY -s
+  else
+      command sudo $@
+  fi
 }
 
 # aliases
