@@ -148,7 +148,6 @@ alias gitph='git push'
 alias gitpl='git pull'
 alias git-svn='git svn'
 alias gitcim='git ci -m'
-alias gita='git add'
 alias gitap='git add -p'
 
 alias sres='git reset --soft'
