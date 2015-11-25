@@ -380,6 +380,3 @@ let g:neomake_json_enabled_makers = ['jsonlint']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-nmap <C-h> <C-w>h
-
