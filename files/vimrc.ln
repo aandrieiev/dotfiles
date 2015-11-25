@@ -85,7 +85,8 @@ set hidden                               " create buffers without saving changes
 
 set clipboard=unnamed,unnamedplus        " share system clipboard
 set nofoldenable
-set timeoutlen=500
+" set timeoutlen=500
+set ttimeout ttimeoutlen=0
 
 " Buffer navigation
 nmap L :bnext<cr>
@@ -95,7 +96,7 @@ imap jj <esc>
 " Close buffer, save file, quit
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
+nmap <leader>q :wq<CR>
 
 " Compile & run
 map <leader>r :call CompileRun()<CR>
