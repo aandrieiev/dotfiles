@@ -227,8 +227,8 @@ if has('nvim')
   nnoremap <A-k> <C-w>k
   nnoremap <A-l> <C-w>l
 
-  nnoremap <leader>y :vs term://bash<cr>i
-  nnoremap <leader>t :10sp term://bash<cr>i
+  nnoremap <leader>y :vs term://bash<cr>
+  nnoremap <leader>t :10sp term://bash<cr>
 
   autocmd BufWinEnter,WinEnter term://* startinsert
 end
