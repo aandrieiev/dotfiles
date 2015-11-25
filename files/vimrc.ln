@@ -26,8 +26,8 @@ if has('nvim')
 else
   set t_Co=256                      " 256-colors for vim
 end
-set background=dark
 colorscheme gruvbox
+set background=dark
 let g:gruvbox_contrast_light="hard"
 
 syntax enable
