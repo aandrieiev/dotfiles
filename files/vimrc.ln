@@ -234,8 +234,7 @@ if has('nvim')
 end
 
 " Reload vimrc
-" map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
-map <f6> :w<bar>:source %<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
+map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
 
 " Save as sudo
 cmap w!! w !sudo tee > /dev/null %
