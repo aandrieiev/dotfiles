@@ -4,7 +4,7 @@ program="`tmux display -p '#{pane_current_command}'`"
 
 if [[ $program == "nvim" ]]; then
   # let nvim handle it
-  tmux send-keys 'C-w' $1
+  tmux send-keys 'C-\' 'C-n' 'C-w' $1
 elif [[ $program == "vim" ]]; then
   # let vim handle it
   tmux send-keys 'Escape' 'C-w' $1
