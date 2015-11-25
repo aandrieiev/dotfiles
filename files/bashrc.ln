@@ -159,3 +159,5 @@ alias tmux='tmux -2'
 alias :q='exit'
 alias vim='nvim'
 alias im='nvim'
+
+alias ssh='TERM=linux ssh'
