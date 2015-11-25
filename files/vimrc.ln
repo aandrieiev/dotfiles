@@ -176,6 +176,10 @@ set listchars=tab:⇥\ ,eol:↩
 " Search
 set ignorecase smartcase
 
+" Splits
+set splitright
+set splitbelow
+
 " Tmux integration
 if $TMUX != ''
   fun! TmuxMove(direction)
