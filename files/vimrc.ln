@@ -96,7 +96,8 @@ imap jj <esc>
 " Close buffer, save file, quit
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nmap <leader>w :w<CR>
-nmap <leader>q :wq<CR>
+nmap <leader>q :q<CR>
+nmap <leader>a :wq<CR>
 
 " Compile & run
 map <leader>r :call CompileRun()<CR>
@@ -202,8 +203,7 @@ if has('nvim')
   nnoremap <leader>y :vs term://bash<cr>
   nnoremap <leader>t :10sp term://bash<cr>
 
-  autocmd BufWinEnter,WinEnter term://* startinsert
-  " autocmd TermOpen * call normal
+  autocmd BufWinEnter,WinEnter,BufEnter term://* startinsert
   autocmd TermClose * call feedkeys(' ')
 end
 
@@ -245,6 +245,10 @@ map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<
 
 " Save as sudo
 cmap w!! w !sudo tee > /dev/null %
+
+" Spell checking
+
+set spell spelllang=en_us
 
 " Undo file
 if has('persistent_undo')
