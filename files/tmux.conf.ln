@@ -11,6 +11,11 @@ set-window-option -g mode-keys vi
 bind -t vi-copy { page-up
 bind -t vi-copy } page-down
 
+set -g default-terminal "linux-italic"
+
+# If run as "tmux attach", create a session if one does not already exist
+new-session -n $HOST
+
 # Integrate with vim for semaless pane/vim windows navigation
 move_handler="~/.bash/vim-tmux-move.sh"
 
@@ -92,3 +97,4 @@ set -g @resurrect-strategy-vim 'session'
 # Initialize TMUX plugin manager.
 # !Keep this line at the very bottom of tmux.conf!
 run-shell '~/.tmux/plugins/tpm/tpm'
+kuì
