@@ -328,6 +328,9 @@ let g:easy_align_delimiters = {
 \     'ignore_groups':   ['!Comment'] },
 \ }
 
+"" Disable mouse
+set mouse=
+
 "" Emmet, HTML, CSS files only
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,eruby EmmetInstall
