@@ -35,6 +35,9 @@ colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_light="hard"
 
+highlight FoldColumn ctermbg=bg
+autocmd Colorscheme * highlight FoldColumn guifg=bg guibg=bg ctermbg=bg ctermfg=bg
+
 set fillchars=""                               " hide split separation char
 
 syntax enable
