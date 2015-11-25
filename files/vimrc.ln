@@ -148,6 +148,7 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 set showmatch            " highlights matching braces
+set errorformat=%A%f:%l:%v
 " Filetype-specific
 " NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -155,6 +156,11 @@ autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 
 autocmd BufRead,BufNewFile .pentadactylrc  setfiletype vim
 autocmd BufRead,BufNewFile *.template  setfiletype json
+
+autocmd! BufWritePost *.py silent Neomake
+autocmd! BufWritePost *.template,*.json silent Neomake
+autocmd! BufWritePost *.go silent Neomake
+
 
 " Move line up/down
 nmap <Leader>e ddkP
