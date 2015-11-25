@@ -64,7 +64,7 @@ endif
 let mapleader="\<Space>"
 nnoremap <SPACE> <Nop>
 
-set nobackup nowritebackup noswapfile " disable swap files
+set nobackup nowritebackup noswapfile    " disable swap files
 
 augroup OnBiffeWrite
   autocmd bufwritepre * :%s/\s\+$//e     " autoremove trailing whitespaces
@@ -80,8 +80,7 @@ set shiftwidth=2
 set backspace=2
 set hidden                               " create buffers without saving changes
 
-set nobackup nowritebackup noswapfile autoread " no swap
-set clipboard=unnamed,unnamedplus              " share system clipboard
+set clipboard=unnamed,unnamedplus        " share system clipboard
 set nofoldenable
 set timeoutlen=500
 
@@ -148,8 +147,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-set showmatch " highlights matching braces
-
+set showmatch            " highlights matching braces
 " Filetype-specific
 " NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
