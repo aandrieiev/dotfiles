@@ -351,6 +351,13 @@ nmap <Leader>il :IndentLinesToggle<CR>
 let g:indentLine_char = "|"
 let g:indentLine_enabled = 0
 
+"" Neomake
+let g:neomake_verbose=2
+let g:neomake_go_enabled_makers = ['go']
+let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_json_enabled_makers = ['jsonlint']
+
+
 "" Syntastic
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
