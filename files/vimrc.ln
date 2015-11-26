@@ -247,8 +247,7 @@ map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<
 cmap w!! w !sudo tee > /dev/null %
 
 " Spell checking
-
-set spell spelllang=en_us
+autocmd FileType markdown setlocal spell spelllang=en_us
 
 " Undo file
 if has('persistent_undo')
