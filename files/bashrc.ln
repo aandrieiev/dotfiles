@@ -14,7 +14,15 @@ for f in $BASHRC_DIR/.bash/*; do . $f; done
 export HISTCONTROL=ignoreboth:erasedups
 
 # set default editor
-export EDITOR=vim
+if hash nvim 2>/dev/null; then
+  _editor=nvim
+elif has vim 2>/dev/null; then
+  _editor=vim
+else
+  _editor=vi
+fi
+
+export EDITOR=$_editor
 
 # set history length
 HISTFILESIZE=1000000
