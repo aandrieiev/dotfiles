@@ -23,25 +23,13 @@ function install_dotfiles {
   done
 }
 
-function install_neobundle {
-  echo "Installing NeoBundle, a Vim package manager.."
-  local bundle_path="$HOME/.vim/bundle"
-  local neobundle_path="$bundle_path/neobundle.vim"
+function install_plug {
+  echo "Installing Plug, a Vim package manager.."
+  local plug_path="$HOME/.vim/autoload/plug.vim"
 
-  if [ ! -d $bundle_path ]; then
-    mkdir -p $bundle_path
-    git clone https://github.com/Shougo/neobundle.vim $neobundle_path
-  else
-    cd $neobundle_path
-
-    if [ ! -d .git ]; then
-      echo "doing what's required"
-      git init
-      git remote add origin https://github.com/Shougo/neobundle.vim.git
-      git branch --set-upstream-to=origin/master master
-    fi
-
-    git pull
+  if [ ! -d $plug_path ]; then
+    curl -fLo $plug_path --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 }
 
@@ -54,7 +42,6 @@ function install_dependencies {
 
       if [ "$DISTRIB_ID" = "Ubuntu" ]; then
         echo "Going to install Vim plugin dependencies"
-        # sudo apt-get -y install exuberant-ctags make gcc &&
         sudo apt-get -y install silversearcher-ag
         echo "Vim plugin dependencies installed"
       else
@@ -80,7 +67,7 @@ while true; do
 done
 
 source ~/.bashrc
-install_neobundle && echo "Done installing NeoBundle"
+install_plug && echo "Done installing NeoBundle"
 install_dependencies && echo "Dependenciea installed"
 
 echo "Installation complete."
