@@ -92,7 +92,7 @@ imap jj <esc>
 " Close buffer, save file, quit
 nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
+nmap <leader>q :q!<CR>
 nmap <leader>a :wq<CR>
 
 " Compile & run
