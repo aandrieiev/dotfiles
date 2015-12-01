@@ -1,6 +1,6 @@
 """ Install/Load Plugins
 call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
+    Plug 'romainl/flattened'
     Plug 'bling/vim-airline'
     Plug 'junegunn/vim-easy-align'
     Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
@@ -27,20 +27,16 @@ else
   set t_Co=256                      " 256-colors for vim
 end
 
-if has('nvim')
-  let g:gruvbox_italic=1
-endif
+" set background=light
+colorscheme flattened_dark
+let g:solarized_bold=1
 
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_contrast_light="hard"
 
 highlight FoldColumn ctermbg=bg
 autocmd Colorscheme * highlight FoldColumn guifg=bg guibg=bg ctermbg=bg ctermfg=bg
 
 set fillchars=""                               " hide split separation char
 
-syntax enable
 set cursorline
 set lazyredraw                                 " redraw only when really need to
 set nohlsearch
