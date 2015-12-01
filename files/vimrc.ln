@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kien/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
-
+    Plug 'saltstack/salt-vim'
     " Only for workstation installations
     if has('nvim')
       Plug 'tpope/vim-obsession'
