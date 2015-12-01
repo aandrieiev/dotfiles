@@ -349,11 +349,11 @@ nnoremap <space>gs :Gstatus<CR>
 
 "" Git-gutter
 let g:gitgutter_sign_column_always=1
-hi clear SignColumn
-hi GitGutterAdd ctermbg=bg
-hi GitGutterChange ctermbg=bg
-hi GitGutterDelete ctermbg=bg
-hi GitGutterChangeDelete ctermbg=bg
+" hi clear SignColumn
+" hi GitGutterAdd ctermbg=bg
+" hi GitGutterChange ctermbg=bg
+" hi GitGutterDelete ctermbg=bg
+" hi GitGutterChangeDelete ctermbg=bg
 
 "" IndentLine
 nmap <Leader>il :IndentLinesToggle<CR>
