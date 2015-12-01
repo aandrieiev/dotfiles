@@ -280,6 +280,9 @@ let g:airline#extensions#tabline#enabled=1            " show buffers
 let g:airline#extensions#tabline#fnamemod=':t'        " only buff names
 let g:airline#extensions#tabline#fnamecollapse=1      " show new buffers on edit
 
+" colortheme
+let g:airline_theme='solarized'
+
 " remove separators
 let g:airline_left_sep=''
 let g:airline_right_sep=''
