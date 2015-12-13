@@ -185,6 +185,8 @@ set splitbelow
 if has('nvim')
   tnoremap jj <C-\><C-n>
   tnoremap <Esc> <C-\><C-n>
+  tnoremap H <C-\><C-n>:bprevious<CR>
+  tnoremap L <C-\><C-n>:bnext<CR>
 
   tnoremap <A-h> <C-\><C-n><C-w>h
   tnoremap <A-j> <C-\><C-n><C-w>j
@@ -234,7 +236,6 @@ if $TMUX != ''
   nnoremap <silent> <c-w>h :silent call TmuxMove('h')<cr>
   nnoremap <silent> <c-w>l :silent call TmuxMove('l')<cr>
 endif
-
 
 " Reload vimrc
 map <f6> :w<bar>:source ~/.vimrc<cr>:AirlineRefresh<cr>:echo "config reloaded!"<cr>
