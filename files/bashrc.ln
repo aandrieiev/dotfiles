@@ -168,3 +168,4 @@ alias vim='nvim'
 alias im='nvim'
 
 alias ssh='TERM=linux ssh'
+alias tar='COPYFILE_DISABLE=1 tar'
