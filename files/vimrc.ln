@@ -73,7 +73,7 @@ augroup END
 set wildignorecase
 set nowrap
 set number                               " show line numbers
-set colorcolumn=81                       " draw a vertical line
+set colorcolumn=80                       " draw a vertical line
 set expandtab tabstop=2                  " expand tabs to 2 spaces
 set shiftwidth=2
 set backspace=2
