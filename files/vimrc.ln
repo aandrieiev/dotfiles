@@ -272,6 +272,9 @@ if has('vim')
   set wildmenu
 endif
 
+" Substitutions
+:nnoremap <Leader>s :%s/<C-r><C-w>//gI<Left><Left><Left>
+
 """ Plugin Settings
 "" Airline
 set noshowmode                                        " hide vim mode indidicator
