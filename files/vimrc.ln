@@ -291,36 +291,42 @@ let g:airline_theme='solarized'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
-" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
-let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V',
-    \ 's'  : 'S',
-    \ 'S'  : 'S',
-    \ '' : 'S'
-\ }
+" don't count trailing whitespace since it lags in huge files
+let g:airline#extensions#whitespace#enabled = 0
 
-let g:airline_left_alt_sep = '|'
+" disable to improve fugitive performance
+let g:airline#extensions#branch#enabled = 0
+
+" Show Vim modes as one letter abbreviations (e.g. NORMAL - N)
+" let g:airline_mode_map = {
+"     \ '__' : '-',
+"     \ 'n'  : 'Norm ↵',
+"     \ 'i'  : 'Ins ✎',
+"     \ 'R'  : 'R',
+"     \ 'c'  : 'C',
+"     \ 'v'  : 'V',
+"     \ 'V'  : 'V',
+"     \ 's'  : 'S',
+"     \ 'S'  : 'S',
+"     \ '' : 'S'
+" \ }
+
+" simple separators for buffer list
+let g:airline_left_alt_sep  = '|'
+let g:airline_right_alt_sep = '|'
 
 "" CtrlP
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup
 
-  " Use ag in CtrlP for listing files. Lightning fast and
-  " respects .gitignore
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore ".git" -g ""'
 endif
 
-nnoremap <leader>f :CtrlP<CR>
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
+nnoremap <leader>f :CtrlP<CR>
 
 "" Cursor shape
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
