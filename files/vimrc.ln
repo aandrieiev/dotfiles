@@ -151,7 +151,6 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-set showmatch            " highlights matching braces
 set errorformat=%A%f:%l:%v
 " Filetype-specific
 " NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
