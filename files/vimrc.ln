@@ -5,17 +5,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-easy-align'
     Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'raimondi/delimitmate'
-    Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
     Plug 'tomtom/tcomment_vim'
     Plug 'yggdroot/indentLine'
     Plug 'kien/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
-    Plug 'saltstack/salt-vim'
+    Plug 'saltstack/salt-vim', { 'for': 'sls' }
+    Plug 'kballard/vim-swift', { 'for': 'swift' }
     " Only for workstation installations
     if has('nvim')
-      Plug 'tpope/vim-obsession'
-      Plug 'benekastah/neomake'
+      " Plug 'tpope/vim-obsession'
+      Plug 'benekastah/neomake', { 'for': 'python' }
     endif
 call plug#end()
 
@@ -122,6 +123,8 @@ func! CompileRun()
     exec "!firefox %.html &"
   elseif &filetype == 'cs'
     exec "!mcs % && mono %:r.exe"
+  elseif &filetype == 'swift'
+    exec "!swift %"
   endif
 endfunc
 
