@@ -154,8 +154,7 @@ nmap <C-l> <C-w>l
 set errorformat=%A%f:%l:%v
 " Filetype-specific
 " NOTE: for more advanced setup, use ~/.vim/ftplygin/filetype.vim
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType cs setlocal shiftwidth=4 tabstop=4
 
 autocmd BufRead,BufNewFile .pentadactylrc  setfiletype vim
 autocmd BufRead,BufNewFile *.template  setfiletype json
@@ -382,3 +381,6 @@ let g:neomake_json_enabled_makers = ['jsonlint']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"" Z
+nmap <A-z> :stop<CR>
